@@ -13,35 +13,35 @@ type DimsumlabsProvider struct {
 }
 
 func NewDimsumlabsProvider(p *ProviderData) *DimsumlabsProvider {
-	const dslHost string = "localhost:8000"
+	const dslHost string = "door.dimsumlabs.com"
 
 	p.ProviderName = "Dimsumlabs"
 	if p.LoginURL.String() == "" {
 		p.LoginURL = &url.URL{
-			Scheme: "http",
+			Scheme: "https",
 			Host:   dslHost,
 			Path:   "/oauth/authorize"}
 	}
 	if p.RedeemURL.String() == "" {
 		p.RedeemURL = &url.URL{
-			Scheme: "http",
+			Scheme: "https",
 			Host:   dslHost,
-			Path:   "/oauth/token"}
+			Path:   "/oauth/token/"}
 	}
 	if p.ProfileURL.String() == "" {
 		p.ProfileURL = &url.URL{
-			Scheme: "http",
+			Scheme: "https",
 			Host:   dslHost,
 			Path:   "/api/v1/profile"}
 	}
 	if p.ValidateURL.String() == "" {
 		p.ValidateURL = &url.URL{
-			Scheme: "http",
+			Scheme: "https",
 			Host:   dslHost,
 			Path:   "/api/v1/tokeninfo"}
 	}
 	if p.Scope == "" {
-		p.Scope = "profile.email"
+		p.Scope = "read"
 	}
 	return &DimsumlabsProvider{ProviderData: p}
 }
